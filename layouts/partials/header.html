@@ -7,6 +7,7 @@
                 {{ range .Site.Menus.main }}
                 <a class="main-nav-link" href="{{ .URL }}">{{ .Name }}</a>
                 {{ end }}
+                {{ if .Site.IsMultiLingual }}{{ partial "language-selector.html" . }}{{ end }}
             </nav>
             <nav id="sub-nav">
                 <div id="search-form-wrap">

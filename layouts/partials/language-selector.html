@@ -1,0 +1,21 @@
+{{/* {{ if .IsTranslated -}}
+<h2 class="visually-hidden">{{ i18n "lang_select_title" }}</h2>
+<nav class="language-selector layout__language-selector" role="navigation">
+<ul class="navbar">
+{{ range .Translations }}
+<li><a rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">{{ .Site.Language.Params.LanguageName }}</a></li>
+{{ end -}}
+</ul>
+</nav>
+{{ end -}}
+*/}}
+
+{{ if .IsTranslated -}}
+{{ range .Translations }}
+<a class="main-nav-link" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">
+  <img src="{{ "/theme/fa-globe.svg" | relURL }}" alt="" width="10em">
+  {{ .Site.Language.Params.LanguageName }}
+</a>
+{{ end -}}
+{{ end -}}
+

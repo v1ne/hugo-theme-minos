@@ -3,16 +3,26 @@
 <div id="container">
     {{ partial "header.html" . }}
     <section id="main" class="outer">
+        {{ if .Content -}}
+          {{ partial "article.html" . }}
+        {{ end }}
+        {{ if not .Page.Params.omitSubpageListing }}
         <section class="archives-wrap">
+            {{ if not .Content -}}
             <div class="archive-category-wrap">
                 <span class="archive-category">{{ .Title }}</span>
             </div>
+            {{- end -}}
             <div class="archives">
-                {{ range .Paginator.Pages }}
+                {{- range .Paginator.Pages }}
                     {{ partial "li.html" . }}
-                {{ end }}
+                {{- end -}}
         </div></section>
         {{ partial "pagination.html" . }}
+        {{ end }}
+        {{ if and (not .Params.nocomment) .Site.Params.disqusShortname }}
+            {{ template "_internal/disqus.html" . }}
+        {{ end }}
     </section>
     {{ partial "footer.html" . }}
 </div>
